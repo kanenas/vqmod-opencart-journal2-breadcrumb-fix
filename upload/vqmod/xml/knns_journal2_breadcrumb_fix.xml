@@ -23,4 +23,19 @@
 			]]></add>
 		</operation>
 	</file>
+	<file path="catalog/view/theme/journal2/template/information/" name="information.tpl,sitemap.tpl" error="log">
+		<operation error="skip">
+			<search position="replace" offset="4"><![CDATA[  <ul class="breadcrumb">]]></search>
+			<add><![CDATA[
+<?php // kanenas: knns_journal2_breadcrumb_fix.xml (start) << ?>
+  <ul itemscope itemtype="https://schema.org/BreadcrumbList" class="breadcrumb">
+  	<?php $position = 1; ?>
+    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="<?php echo $breadcrumb['href']; ?>" itemprop="item"><span itemprop="name"><?php echo $breadcrumb['text']; ?></span></a><meta itemprop="position" content="<?php echo $position++; ?>" /></li>
+    <?php } ?>
+  </ul>
+<?php // kanenas: knns_journal2_breadcrumb_fix.xml (end) << ?>
+			]]></add>
+		</operation>
+	</file>
 </modification>
