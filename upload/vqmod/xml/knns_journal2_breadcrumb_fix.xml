@@ -5,16 +5,16 @@
 	xsi:schemaLocation="https://github.com/vqmod/vqmod https://raw.githubusercontent.com/vqmod/vqmod/master/vqmod.xsd"
 	>
 	<id><![CDATA[[VQMOD] Journal v2.x breadcrumb fix (use of schema.org types)]]></id>
-	<version>0.1.0</version>
-	<vqmver>2.6.3</vqmver>
+	<version>0.2.0</version>
+	<vqmver>2.6.8</vqmver>
 	<author>kanenas.net (aka Nikolas Branis) - nbran@kanenas.net</author>
-	<file path="catalog/view/theme/journal2/template/product/" name="category.tpl,compare.tpl,manufacturer_info.tpl,manufacturer_list.tpl,product.tpl,search.tpl,special.tpl" error="log">
+	<file path="catalog/view/theme/journal2/template/information/" name="information.tpl,sitemap.tpl" error="log">
 		<operation error="skip">
-			<search position="replace" offset="4"><![CDATA[  <ul class="breadcrumb">]]></search>
+			<search position="replace" offset="4"><![CDATA[<ul class="breadcrumb">]]></search>
 			<add><![CDATA[
 <?php // kanenas: knns_journal2_breadcrumb_fix.xml (start) << ?>
   <ul itemscope itemtype="https://schema.org/BreadcrumbList" class="breadcrumb">
-  	<?php $position = 1; ?>
+    <?php $position = 1; ?>
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
       <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="<?php echo $breadcrumb['href']; ?>" itemprop="item"><span itemprop="name"><?php echo $breadcrumb['text']; ?></span></a><meta itemprop="position" content="<?php echo $position++; ?>" /></li>
     <?php } ?>
@@ -23,13 +23,28 @@
 			]]></add>
 		</operation>
 	</file>
-	<file path="catalog/view/theme/journal2/template/information/" name="information.tpl,sitemap.tpl" error="log">
+	<file path="catalog/view/theme/journal2/template/journal2/blog/" name="post.tpl,posts.tpl" error="log">
 		<operation error="skip">
-			<search position="replace" offset="4"><![CDATA[  <ul class="breadcrumb">]]></search>
+			<search position="replace" offset="4"><![CDATA[<ul class="breadcrumb">]]></search>
 			<add><![CDATA[
 <?php // kanenas: knns_journal2_breadcrumb_fix.xml (start) << ?>
   <ul itemscope itemtype="https://schema.org/BreadcrumbList" class="breadcrumb">
-  	<?php $position = 1; ?>
+    <?php $position = 1; ?>
+    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="<?php echo $breadcrumb['href']; ?>" itemprop="item"><span itemprop="name"><?php echo $breadcrumb['text']; ?></span></a><meta itemprop="position" content="<?php echo $position++; ?>" /></li>
+    <?php } ?>
+  </ul>
+<?php // kanenas: knns_journal2_breadcrumb_fix.xml (end) << ?>
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/view/theme/journal2/template/product/" name="category.tpl,compare.tpl,manufacturer_info.tpl,manufacturer_list.tpl,product.tpl,search.tpl,special.tpl" error="log">
+		<operation error="skip">
+			<search position="replace" offset="4"><![CDATA[<ul class="breadcrumb">]]></search>
+			<add><![CDATA[
+<?php // kanenas: knns_journal2_breadcrumb_fix.xml (start) << ?>
+  <ul itemscope itemtype="https://schema.org/BreadcrumbList" class="breadcrumb">
+    <?php $position = 1; ?>
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
       <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="<?php echo $breadcrumb['href']; ?>" itemprop="item"><span itemprop="name"><?php echo $breadcrumb['text']; ?></span></a><meta itemprop="position" content="<?php echo $position++; ?>" /></li>
     <?php } ?>
